@@ -21,6 +21,9 @@ with open(DATA_DIR / 'skill.json', 'r', encoding='utf-8') as f:
 with open(DATA_DIR / 'termconfig.json', 'r', encoding='utf-8') as f:
     termconfig = json.load(f)
 
+with open(DATA_DIR / 'skilltree.json', 'r', encoding='utf-8') as f:
+    skilltree = json.load(f)
+
 def get_string(id, multitext):
     try:
         return multitext[id]['Content']
@@ -35,6 +38,20 @@ def get_skills(character_id):
         skill_id for skill_id, data in skill.items()
         if data.get('SkillGroupId') == character_id
     ]
+
+def get_inherent_skill_label(character_id, skill_id, inherent_skill_types):
+    nodes = skilltree.get(str(character_id), [])
+    node_data = next((node for node in nodes if str(
+                        node.get('SkillId')) == str(skill_id)
+                    ), None)
+    if node_data:
+        parent_nodes = node_data.get('ParentNodes', [])
+        for node in nodes:
+            if node.get('NodeIndex') in parent_nodes:
+                previous_skill_id = skill.get(str(node.get('SkillId')), {})
+                if previous_skill_id.get('SkillType') in inherent_skill_types:
+                    return "2nd Inherent Skills"
+    return "1st Inherent Skills"
 
 def get_skill_attributes(skill_id):
     attrs = [

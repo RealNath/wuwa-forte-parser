@@ -19,14 +19,11 @@ def optimize_json(json_file, key):
         else:
             result[item_id] = [result[item_id], item]
 
-    with open(f"{json_file.replace('.json', '')}.json", 'w', encoding='utf-8') as f:
+    with open(f"{DATA_DIR / json_file.replace('.json', '')}.json", 'w', encoding='utf-8') as f:
         json.dump(result, f, ensure_ascii=False, indent=2)
 
 # optimize_json('MultiText.json', 'Id')
-# optimize_json('achievement.json', 'Id')
-# optimize_json('achievementcategory.json', 'Id')
-# optimize_json('achievementgroup.json', 'Id')
-# optimize_json('achievementstarlevel.json', 'Level')
-optimize_json('skill.json', 'SkillGroupId')
-optimize_json('skilldescription.json', 'SkillLevelGroupId')
-optimize_json('termconfig.json', 'Id')
+# optimize_json('skill.json', 'SkillGroupId')
+# optimize_json('skilldescription.json', 'SkillLevelGroupId')
+# optimize_json('termconfig.json', 'Id')
+# optimize_json('skilltree.json', 'NodeGroup')
