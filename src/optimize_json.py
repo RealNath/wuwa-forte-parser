@@ -1,9 +1,12 @@
 import json
+import pathlib
+
+DATA_DIR = pathlib.Path(__file__).parent / ".." / "data"
 
 # convert from list of dict to dict
 # (key: value of a given `key`, value: the rest of key-value pairs)
 def optimize_json(json_file, key):
-    with open(json_file, 'r', encoding='utf-8') as f:
+    with open(DATA_DIR / json_file, 'r', encoding='utf-8') as f:
         data = json.load(f)
     
     result = {}
