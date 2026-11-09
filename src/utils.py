@@ -1,11 +1,11 @@
 import json
-import pathlib
+from pathlib import Path
 import re
 import json
 
 from formatting import format_text, fill_placeholders
 
-DATA_DIR = pathlib.Path(__file__).parent / ".." / "data"
+DATA_DIR = Path(__file__).parent / ".." / "data"
 MIN_LEVEL = 1
 MAX_LEVEL = 10
 

@@ -1,7 +1,7 @@
 import json
-import pathlib
+from pathlib import Path
 
-DATA_DIR = pathlib.Path(__file__).parent / ".." / "data"
+DATA_DIR = Path(__file__).parent / ".." / "data"
 
 # convert from list of dict to dict
 # (key: value of a given `key`, value: the rest of key-value pairs)
@@ -22,8 +22,8 @@ def optimize_json(json_file, key):
     with open(f"{DATA_DIR / json_file.replace('.json', '')}.json", 'w', encoding='utf-8') as f:
         json.dump(result, f, ensure_ascii=False, indent=2)
 
-# optimize_json('MultiText.json', 'Id')
-# optimize_json('skill.json', 'SkillGroupId')
-# optimize_json('skilldescription.json', 'SkillLevelGroupId')
-# optimize_json('termconfig.json', 'Id')
-# optimize_json('skilltree.json', 'NodeGroup')
+optimize_json('MultiText.json', 'Id')
+optimize_json('skill.json', 'Id')
+optimize_json('skilldescription.json', 'Id')
+optimize_json('termconfig.json', 'Id')
+optimize_json('skilltree.json', 'NodeGroup')

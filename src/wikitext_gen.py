@@ -1,4 +1,4 @@
-import pathlib
+from pathlib import Path
 from utils import (
     get_string,
     get_skill_attributes,
@@ -10,7 +10,7 @@ from utils import (
     skill
 )
 
-OUTPUT_DIR = pathlib.Path(__file__).parent / ".." / "output"
+OUTPUT_DIR = Path(__file__).parent / ".." / "output"
 # SKILLTYPE_NUM_NO_LEVEL = [4, 7, 8, 9, 10] # Inherent Skill
 ACTIVE_SKILLTYPE_NUM = [1, 2, 3] # Normal Attack, Resonance Skill, Resonance Liberation
 INHERENT_SKILLTYPE_NUM = [4, 7, 8, 9, 10] # Inherent Skill
@@ -23,6 +23,7 @@ def main():
     character_id = 1312
     skill_ids = get_skills(character_id)
     # print(f"Skill IDs: {skill_ids}")
+    OUTPUT_DIR.mkdir(exist_ok=True)
 
     for skill_id in skill_ids:
         wikitext = []
@@ -92,4 +93,5 @@ def main():
         with open(OUTPUT_DIR / f"{skill_name}.wikitext", "w") as f:
             f.write("\n".join(wikitext))
 
-main()
+if __name__ == "__main__":
+    main()
