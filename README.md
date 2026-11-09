@@ -31,3 +31,5 @@ This is a program that helps you automatically parse and generate wikitext for e
     * `CharacterId` can be found at MultiText.json, by searching `"Content": "{character name}",` then find the JSON key (previous line) that is `RoleInfo_{CharacterID}_Name`
     
     For example: `python wikitext_gen.py 1312` (Suoming)
+
+4. See the `../output/` folder. The wikitext files will be generated with the name of the forte, ending with `.wikitext` extension.
