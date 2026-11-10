@@ -26,7 +26,7 @@ This is a program that helps you automatically parse and generate wikitext for e
 
 3. Run this command:
     ```bash
-    python wikitext_gen.py {CharacterID}
+    python wikitext_gen.py -c {CharacterID}
     ```
     * `CharacterId` can be found at MultiText.json, by searching `"Content": "{character name}",` then find the JSON key (previous line) that is `RoleInfo_{CharacterID}_Name`
     

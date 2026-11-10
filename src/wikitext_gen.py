@@ -1,4 +1,5 @@
 from pathlib import Path
+import argparse
 from utils import (
     get_string,
     get_skill_attributes,
@@ -19,8 +20,9 @@ INTRO_SKILLTYPE_NUM = [5] # Intro Skill
 OUTRO_SKILLTYPE_NUM = [11] # Outro Skill
 CONCERTO_SKILLTYPE_NUM = INTRO_SKILLTYPE_NUM + OUTRO_SKILLTYPE_NUM
 
-def main():
-    character_id = 1312
+def main(character_id, language):
+    print(f"language: {language}")
+    character_id = character_id
     skill_ids = get_skills(character_id)
     # print(f"Skill IDs: {skill_ids}")
     OUTPUT_DIR.mkdir(exist_ok=True)
@@ -94,4 +96,8 @@ def main():
             f.write("\n".join(wikitext))
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description="Generate the wikitexts of each forte pages of a character.")
+    parser.add_argument("-c", "--characterid", type=int, required=True, help="The character id of the character to generate the wikitexts for.")
+    parser.add_argument("-l", "--language", type=str, default="en", help="The language based on the MultiText: [de,en,es,fr,id,ja,ko,pt,ru,th,vi,zh-Hans,zh-Hant]")
+    args = parser.parse_args()
+    main(args.characterid, args.language)
